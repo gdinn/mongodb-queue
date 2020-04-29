@@ -112,7 +112,7 @@ Queue.prototype.get = function(opts, callback) {
         query = {
             deleted : null,
             visible : { $lte : now() },
-            _id: _id
+            _id: ObjectId(_id)
         }
     } else {
         query = {
