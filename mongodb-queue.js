@@ -11,6 +11,7 @@
  **/
 
 var crypto = require('crypto')
+var mongo = require('mongodb');
 
 // some helper functions
 function id() {
@@ -112,7 +113,7 @@ Queue.prototype.get = function(opts, callback) {
         query = {
             deleted : null,
             visible : { $lte : now() },
-            _id: ObjectId(_id)
+            _id: new mongo.ObjectId(_id)
         }
     } else {
         query = {
