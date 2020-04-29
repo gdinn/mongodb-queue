@@ -106,9 +106,19 @@ Queue.prototype.get = function(opts, callback) {
     }
 
     var visibility = opts.visibility || self.visibility
-    var query = {
-        deleted : null,
-        visible : { $lte : now() },
+    var _id = opts._id
+    var query = {}
+    if(_id) {
+        query = {
+            deleted : null,
+            visible : { $lte : now() },
+            _id: _id
+        }
+    } else {
+        query = {
+            deleted : null,
+            visible : { $lte : now() }
+        }
     }
     var sort = {
         _id : 1
